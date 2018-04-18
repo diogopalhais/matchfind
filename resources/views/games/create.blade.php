@@ -35,21 +35,21 @@
             </div>
 
           <div class="row">
-            <div class="col-4">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Number players total *</label>
                 <input name="players_total" type="number" class="form-control" placeholder="10" required>
                 {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Number players confirmed *</label>
                 <input name="players_confirmed" type="number" class="form-control" placeholder="6" required>
                 {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4">
 
               <div class="form-group">
                 <label class="form-label">Cost *</label>
@@ -67,7 +67,7 @@
 
           <div class="row">
 
-            <div class="col-4">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Date *</label>
                 <input type="date" name="date" class="form-control" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" placeholder="dd/mm/yyyy" required>
@@ -75,14 +75,14 @@
               </div>
           </div>
 
-            <div class="col-4">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Time start *</label>
                 <input type="text" name="time_start" class="form-control" data-inputmask-alias="hh:mm" data-inputmask-inputformat="hh:mm" placeholder="hh:mm" required>
                 {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Time end *</label>
                 <input type="text" name="time_end" class="form-control" data-inputmask-alias="hh:mm" data-inputmask-inputformat="hh:mm" placeholder="hh:mm" required>
