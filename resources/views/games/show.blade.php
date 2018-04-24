@@ -121,7 +121,7 @@
                             <span>
                               <div class="d-flex flex-column">
                                 <div class="d-flex align-items-center mt-auto">
-                                  <div class="avatar avatar-md mr-3" style="background-image: url({{$game->photo}})"></div>
+                                  <div class="avatar avatar-md mr-3" style="background-image: url({{$game->user->photo}})"></div>
                                   <div>
                                     <a href="/player/{{$game->user->id}}" class="text-default"><b>{{$game->user->name}}</b></a> + {{$game->num_players_confirmed -1}}
                                     @if($game->user->location)
@@ -143,7 +143,7 @@
                               <span>
                                 <div class="d-flex flex-column">
                                   <div class="d-flex align-items-center mt-auto">
-                                    <div class="avatar avatar-md mr-3" style="background-image: url({{$player->photo}})"></div>
+                                    <div class="avatar avatar-md mr-3" style="background-image: url({{$player->user->photo}})"></div>
                                     <div>
                                       <a href="/player/{{$player->user->id}}" class="text-default"><b>{{$player->user->name}}</b></a>
                                       @if($player->user->location)
