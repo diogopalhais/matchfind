@@ -1,13 +1,34 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Match Find</title>
-        <link href="css/dashboard.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>MatchFind</title>
+      <meta name="description" content="Find sport events to attend, and players for your event">
+      <meta name="robots" content="index,follow">
+      <meta name="googlebot" content="index,follow">
+
+      <meta property="og:url" content="http://matchfind.xyz">
+      <meta property="og:type" content="website">
+      <meta property="og:title" content="Matchfind">
+      <meta property="og:image" content="http://matchfind.xyz/images/1.png">
+      <meta property="og:description" content="Find sport events to attend, and players for your event">
+      <meta property="og:site_name" content="Matchfind">
+
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:creator" content="@diogopalhais">
+      <meta name="twitter:url" content="http://matchfind.xyz">
+      <meta name="twitter:title" content="Matchfind">
+      <meta name="twitter:description" content="Find sport events to attend, and players for your event">
+      <meta name="twitter:image" content="http://matchfind.xyz/images/1.png">
+
+      <meta itemprop="name" content="Matchfind">
+      <meta itemprop="description" content="Find sport events to attend, and players for your event">
+      <meta itemprop="image" content="http://matchfind.xyz/images/1.png">
+
+      <link href="css/dashboard.css" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <style>
             html, body {

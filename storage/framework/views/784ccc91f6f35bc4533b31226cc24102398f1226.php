@@ -5,7 +5,7 @@
           <div class="row">
             <div class="col col-login mx-auto">
               <div class="text-center mb-6">
-                <img src="brand/tabler.svg" class="h-6" alt="">
+                <span style="background:#3742fa" class="avatar"></span>
               </div>
               <form class="card" method="POST" action="<?php echo e(route('login')); ?>">
                   <?php echo e(csrf_field()); ?>

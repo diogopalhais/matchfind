@@ -17,6 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/resetpassword', 'Auth\ForgotPasswordController@esqueciSenha');
+Route::post('/resetpassword', 'Auth\ForgotPasswordController@esqueciSenhaPost');
+Route::get('/resetpassword/{remember_token}', [
+    'as' => 'esqueci_senha_path',
+    'uses' => 'Auth\ForgotPasswordController@esqueciSenhaConfirm'
+]);
+Route::post('/resetpassword', 'Auth\ForgotPasswordController@resetsenha');
+
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 Route::get('/markallasread', 'UserController@markallasread')->middleware('auth');

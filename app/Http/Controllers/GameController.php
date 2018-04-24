@@ -158,16 +158,23 @@ class GameController extends Controller
                    ->withInput();
                  }
 
+                 $game = \App\Game::find($id);
+                 if($game){
 
-                 $item = new \App\GameMessage;
-                 $item->user_id = \Auth::user()->id;
-                 $item->game_id = $id;
-                 $item->message = $request->message;
-                 $item->save();
+                   $item = new \App\GameMessage;
+                   $item->user_id = \Auth::user()->id;
+                   $item->game_id = $id;
+                   $item->message = $request->message;
+                   $item->save();
 
-                 return back()->with('success','The message was posted successfully!');
+                   foreach ($game->attending as $user) {
+                     if($user->user->id != \Auth::user()->id){
+                       $user->user->notify(new \App\Notifications\Message(['game_id'=> $game->id, 'user_id'=> \Auth::user()->id ]));
+                      }
+                   }
 
-
+                   return back()->with('success','The message was posted successfully!');
+                 }
 
   }
 

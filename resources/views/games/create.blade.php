@@ -6,7 +6,7 @@
 
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Create New game</h3>
+        <h3 class="card-title"><b>Create New Event</b></h3>
       </div>
       <form method="post" action="/events/new">
         {{ csrf_field() }}
@@ -23,7 +23,7 @@
         @endif
 
           <div class="form-group">
-              <label class="form-label">Sport *</label>
+              <label class="form-label">Select sport *</label>
               <div class="selectgroup selectgroup-pills">
                 @foreach ($sports as $sport)
                   <label class="selectgroup-item">
@@ -39,14 +39,14 @@
               <div class="form-group">
                 <label class="form-label">Number players total *</label>
                 <input name="players_total" type="number" class="form-control" placeholder="10" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                <small class="form-text text-muted">Number of players to play in total including you</small>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Number players confirmed *</label>
                 <input name="players_confirmed" type="number" class="form-control" placeholder="6" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                <small class="form-text text-muted">Number of players already attending excluding you </small>
               </div>
             </div>
             <div class="col-md-4">
@@ -54,7 +54,7 @@
               <div class="form-group">
                 <label class="form-label">Cost *</label>
                 <input type="text" name="cost" class="form-control" placeholder="0.00" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                <small class="form-text text-muted">Cost per player</small>
               </div>
 
             </div>
@@ -62,7 +62,8 @@
           </div>
 
           <label class="form-label">Location *</label>
-          <input id="pac-input" class="controls" name="local" type="text" placeholder="Enter a location" required>
+
+          <input id="pac-input" class="form-control mb-2" name="local" type="text" placeholder="Enter a location" required>
           <div id="map" class="mb-4"></div>
 
           <div class="row">
@@ -70,23 +71,58 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Date *</label>
-                <input type="date" name="date" class="form-control" data-inputmask-alias="date" data-inputmask-inputformat="dd/mm/yyyy" placeholder="dd/mm/yyyy" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                <input type='text' id="date" name="date" class="form-control" placeholder="dd/mm/yyyy" readonly required>
+                <script>
+                  $('#date').datepicker({
+                      language: 'en',
+                      minDate: new Date()
+                    });
+                </script>
               </div>
           </div>
 
             <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Time start *</label>
-                <input type="text" name="time_start" class="form-control" data-inputmask-alias="hh:mm" data-inputmask-inputformat="hh:mm" placeholder="hh:mm" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                <input type="text" name="time_start"  placeholder="hh:mm" class="only-time time_start form-control" required="true" readonly="true">
+                <script>
+                  $('.time_start').datepicker({
+                    dateFormat: ' ',
+                    timepicker: true,
+                    classes: 'only-timepicker'
+                  });
+                </script>
+                <style>
+                  .only-timepicker .datepicker--nav,
+                  .only-timepicker .datepicker--content {
+                      display: none;
+                  }
+                  .only-timepicker .datepicker--time {
+                      border-top: none;
+                  }
+                </style>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label class="form-label">Time end *</label>
-                <input type="text" name="time_end" class="form-control" data-inputmask-alias="hh:mm" data-inputmask-inputformat="hh:mm" placeholder="hh:mm" required>
-                {{-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+                <input type="text" name="time_end" class="time_end only-time form-control" placeholder="hh:mm" required readonly>
+                <script>
+                  $('.time_end').datepicker({
+                    dateFormat: ' ',
+                    timepicker: true,
+                    classes: 'only-timepicker'
+                  });
+                </script>
+                <style>
+                  .only-timepicker .datepicker--nav,
+                  .only-timepicker .datepicker--content {
+                      display: none;
+                  }
+                  .only-timepicker .datepicker--time {
+                      border-top: none;
+                  }
+                </style>
               </div>
             </div>
           </div>
@@ -119,57 +155,21 @@
   <style>
 
       #map {
-        height: 400px;
+        height: 300px;
       }
 
-      .controls {
-        margin-top: 10px;
-        border: 1px solid transparent;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        height: 32px;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }
-
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 300px;
-      }
-
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-
-      .pac-container {
-        font-family: Roboto;
-      }
-
-      #type-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        padding: 5px 11px 0px 11px;
-      }
-
-      #type-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
     </style>
 
   <script>
 
-      $(document).ready(function(){
-        $(":input").inputmask();
-      });
+  $(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -178,10 +178,6 @@
         });
         var input = /** @type {!HTMLInputElement} */(
             document.getElementById('pac-input'));
-
-        var types = document.getElementById('type-selector');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.bindTo('bounds', map);
@@ -197,8 +193,7 @@
           marker.setVisible(false);
           var place = autocomplete.getPlace();
           if (!place.geometry) {
-            // User entered the name of a Place that was not suggested and
-            // pressed the Enter key, or the Place Details request failed.
+
             window.alert("No details available for input: '" + place.name + "'");
             return;
           }
@@ -233,19 +228,8 @@
           infowindow.open(map, marker);
         });
 
-        // Sets a listener on a radio button to change the filter type on Places
-        // Autocomplete.
-        function setupClickListener(id, types) {
-          var radioButton = document.getElementById(id);
-          radioButton.addEventListener('click', function() {
-            autocomplete.setTypes(types);
-          });
-        }
-
-        setupClickListener('changetype-all', []);
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD22LYxp8jsIshXVBidtMaBg76tdfcVovM&libraries=places&callback=initMap"
-        async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD22LYxp8jsIshXVBidtMaBg76tdfcVovM&libraries=places&callback=initMap" async defer></script>
 
 @endsection

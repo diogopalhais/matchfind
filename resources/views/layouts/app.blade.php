@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MatchFind</title>
+  <meta name="description" content="Find sport events to attend, and players for your event">
+  <meta name="robots" content="index,follow">
+  <meta name="googlebot" content="index,follow">
+
+  <meta property="og:url" content="http://matchfind.xyz">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Matchfind">
+  <meta property="og:image" content="http://matchfind.xyz/images/1.png">
+  <meta property="og:description" content="Find sport events to attend, and players for your event">
+  <meta property="og:site_name" content="Matchfind">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@diogopalhais">
+  <meta name="twitter:url" content="http://matchfind.xyz">
+  <meta name="twitter:title" content="Matchfind">
+  <meta name="twitter:description" content="Find sport events to attend, and players for your event">
+  <meta name="twitter:image" content="http://matchfind.xyz/images/1.png">
+
+  <meta itemprop="name" content="Matchfind">
+  <meta itemprop="description" content="Find sport events to attend, and players for your event">
+  <meta itemprop="image" content="http://matchfind.xyz/images/1.png">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Match Find') }}</title>
-
     <link href="/css/dashboard.css" rel="stylesheet">
     <link href="{{ asset('css/base.css') }}" rel="stylesheet">
+
     <script src="https://use.fontawesome.com/5724838085.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="/js/jquery.inputmask.bundle.js"></script>
+    <link href="/css/datepicker.css" rel="stylesheet" type="text/css">
+    <script src="/js/datepicker.js"></script>
+    <script src="/js/datepicker.en.js"></script>
 </head>
 <body>
     <div id="app">
@@ -50,6 +74,14 @@
                           <span class="avatar mr-3 align-self-center" style="background-image: url({{\App\User::find($notification->data['user_id'])->photo}})"></span>
                           <div>
                             <strong>{{\App\User::find($notification->data['user_id'])->name}}</strong> sent you a request to join your event
+                            <div class="small text-muted">{{\Carbon\Carbon::parse($notification->created_at)->diffforhumans()}}</div>
+                          </div>
+                        </a>
+                      @elseif($notification->type == 'App\Notifications\Message')
+                        <a href="/events/{{\App\Game::find($notification->data['game_id'])->id}}" class="dropdown-item d-flex">
+                          <span class="avatar mr-3 align-self-center" style="background-image: url({{\App\User::find($notification->data['user_id'])->photo}})"></span>
+                          <div>
+                            <strong>{{\App\User::find($notification->data['user_id'])->name}}</strong> posted a new message in the event
                             <div class="small text-muted">{{\Carbon\Carbon::parse($notification->created_at)->diffforhumans()}}</div>
                           </div>
                         </a>

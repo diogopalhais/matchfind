@@ -11,11 +11,15 @@
 
     <link href="/css/dashboard.css" rel="stylesheet">
     <link href="<?php echo e(asset('css/base.css')); ?>" rel="stylesheet">
+
     <script src="https://use.fontawesome.com/5724838085.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="/js/jquery.inputmask.bundle.js"></script>
+    <link href="/css/datepicker.css" rel="stylesheet" type="text/css">
+    <script src="/js/datepicker.js"></script>
+    <script src="/js/datepicker.en.js"></script>
 </head>
 <body>
     <div id="app">
@@ -50,6 +54,14 @@
                           <span class="avatar mr-3 align-self-center" style="background-image: url(<?php echo e(\App\User::find($notification->data['user_id'])->photo); ?>)"></span>
                           <div>
                             <strong><?php echo e(\App\User::find($notification->data['user_id'])->name); ?></strong> sent you a request to join your event
+                            <div class="small text-muted"><?php echo e(\Carbon\Carbon::parse($notification->created_at)->diffforhumans()); ?></div>
+                          </div>
+                        </a>
+                      <?php elseif($notification->type == 'App\Notifications\Message'): ?>
+                        <a href="/events/<?php echo e(\App\Game::find($notification->data['game_id'])->id); ?>" class="dropdown-item d-flex">
+                          <span class="avatar mr-3 align-self-center" style="background-image: url(<?php echo e(\App\User::find($notification->data['user_id'])->photo); ?>)"></span>
+                          <div>
+                            <strong><?php echo e(\App\User::find($notification->data['user_id'])->name); ?></strong> posted a new message in the event
                             <div class="small text-muted"><?php echo e(\Carbon\Carbon::parse($notification->created_at)->diffforhumans()); ?></div>
                           </div>
                         </a>
