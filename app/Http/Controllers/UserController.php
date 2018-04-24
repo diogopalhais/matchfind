@@ -60,7 +60,11 @@ class UserController extends Controller
          $user->location = $request->location;
        }
 
-       if($request->sports){
+       foreach ($request->sports as $sport) {
+         $user->sports()->detach($sport);
+       }
+
+      if($request->sports){
          foreach ($request->sports as $sport) {
            $user->sports()->attach($sport);
          }
