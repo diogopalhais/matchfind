@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//API
+Route::get('/api/events/json', 'GameController@index_json');
+Route::get('/api/events/{id}/json', 'GameController@show_json');
+
 Auth::routes();
 
 Route::get('/resetpassword', 'Auth\ForgotPasswordController@esqueciSenha');
@@ -37,6 +41,7 @@ Route::get('/requests', 'UserController@requests')->middleware('auth');
 Route::get('/invites', 'UserController@invites')->middleware('auth');
 
 Route::get('/events', 'GameController@index')->middleware('auth');
+
 Route::get('/my-events', 'GameController@myindex')->middleware('auth');
 Route::get('/attending', 'GameController@attending')->middleware('auth');
 Route::get('/pending', 'GameController@pending')->middleware('auth');

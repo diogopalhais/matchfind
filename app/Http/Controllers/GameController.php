@@ -13,6 +13,12 @@ class GameController extends Controller
       return view('games.index',compact('games'));
   }
 
+  public function index_json()
+  {
+      $games = \App\Game::where('date','>=', \Carbon\Carbon::now())->paginate(10);
+      return response()->json($games);
+  }
+
   public function myindex()
   {
 
@@ -122,6 +128,14 @@ class GameController extends Controller
 
      $game = \App\Game::find($id);
      return view('games.show',compact('game'));
+
+  }
+
+  public function show_json($id)
+  {
+
+     $game = \App\Game::find($id);
+     return response()->json($game);
 
   }
 

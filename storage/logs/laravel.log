@@ -11574,3 +11574,9 @@ Stack trace:
 #56 /Users/mailcube/start_native/matchfind/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #57 /Users/mailcube/start_native/matchfind/server.php(21): require_once('/Users/mailcube...')
 #58 {main}  
+[2018-05-03 18:26:01] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Cannot redeclare App\Http\Controllers\GameController::index()' in /Users/mailcube/start_native/matchfind/app/Http/Controllers/GameController.php:16
+Stack trace:
+#0 {main}  
+[2018-05-03 19:01:39] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error' in /Users/mailcube/start_native/matchfind/routes/web.php:20
+Stack trace:
+#0 {main}  
